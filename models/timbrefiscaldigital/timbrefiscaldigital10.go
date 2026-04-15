@@ -14,16 +14,16 @@ type TimbreFiscalDigital10 struct {
 	Version          string    `xml:"version,attr" bson:"Version" json:"Version"`
 	Uuid             string    `xml:"UUID,attr" bson:"Uuid" json:"Uuid"`
 	FechaTimbrado    time.Time `bson:"FechaTimbrado" json:"FechaTimbrado"`
-	SelloCfd         string    `xml:"selloCFD,attr" bson:"SelloCfd" json:"SelloCfd"`
-	NoCertificadoSat string    `xml:"noCertificadoSAT,attr" bson:"NoCertificadoSat" json:"NoCertificadoSat"`
-	SelloSat         string    `xml:"selloSAT,attr" bson:"SelloSat" json:"SelloSat"`
+	SelloCFD         string    `xml:"selloCFD,attr" bson:"SelloCFD" json:"SelloCFD"`
+	NoCertificadoSAT string    `xml:"noCertificadoSAT,attr" bson:"NoCertificadoSAT" json:"NoCertificadoSAT"`
+	SelloSAT         string    `xml:"selloSAT,attr" bson:"SelloSAT" json:"SelloSAT"`
 }
 
 func (t *TimbreFiscalDigital10) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 	type tmp struct {
 		Version          string `xml:"version,attr"`
 		Uuid             string `xml:"UUID,attr"`
-		FechaRaw         string `xml:"FechaTimbrado,attr"`
+		FechaTimbradoRaw string `xml:"FechaTimbrado,attr"`
 		SelloCfd         string `xml:"selloCFD,attr"`
 		NoCertificadoSat string `xml:"noCertificadoSAT,attr"`
 		SelloSat         string `xml:"selloSAT,attr"`
@@ -35,7 +35,7 @@ func (t *TimbreFiscalDigital10) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 		return err
 	}
 
-	parsed, err := helpers.ParseDatetime(aux.FechaRaw)
+	parsed, err := helpers.ParseDatetime(aux.FechaTimbradoRaw)
 	if err != nil {
 		return err
 	}
@@ -43,9 +43,9 @@ func (t *TimbreFiscalDigital10) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 	t.Version = aux.Version
 	t.Uuid = aux.Uuid
 	t.FechaTimbrado = parsed
-	t.SelloCfd = aux.SelloCfd
-	t.NoCertificadoSat = aux.NoCertificadoSat
-	t.SelloSat = aux.SelloSat
+	t.SelloCFD = aux.SelloCfd
+	t.NoCertificadoSAT = aux.NoCertificadoSat
+	t.SelloSAT = aux.SelloSat
 
 	return nil
 }
