@@ -9,7 +9,7 @@ import (
 
 // Namespace es tfd.
 
-// TimbreFiscalDigital10 Versión 1.0 del complemento TimbreFiscalDigital.
+// TimbreFiscalDigital11 Versión 1.1 del complemento TimbreFiscalDigital.
 type TimbreFiscalDigital11 struct {
 	Version          string    `xml:"Version,attr" bson:"Version" json:"Version"`
 	Uuid             string    `xml:"UUID,attr" bson:"Uuid" json:"Uuid" xml:"Uuid"`
