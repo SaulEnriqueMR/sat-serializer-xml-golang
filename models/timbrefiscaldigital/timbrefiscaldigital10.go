@@ -2,6 +2,7 @@ package timbrefiscaldigital
 
 import (
 	"encoding/xml"
+	"strings"
 	"time"
 
 	"github.com/SaulEnriqueMR/sat-serializer-xml-golang/models/helpers"
@@ -41,7 +42,7 @@ func (t *TimbreFiscalDigital10) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 	}
 
 	t.Version = aux.Version
-	t.Uuid = aux.Uuid
+	t.Uuid = strings.ToUpper(aux.Uuid)
 	t.FechaTimbrado = parsed
 	t.SelloCFD = aux.SelloCfd
 	t.NoCertificadoSAT = aux.NoCertificadoSat
