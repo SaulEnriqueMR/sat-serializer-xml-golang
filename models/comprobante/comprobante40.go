@@ -5,7 +5,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/SaulEnriqueMR/sat-serializer-xml-golang/models/helpers"
+	"github.com/SaulEnriqueMR/sat-serializer-xml-golang/helpers"
 )
 
 type Comprobante40 struct {
