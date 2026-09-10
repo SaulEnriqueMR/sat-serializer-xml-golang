@@ -101,22 +101,22 @@ type Receptor40 struct {
 }
 
 type Concepto40 struct {
-	ClaveProdServ       string                   `xml:"ClaveProdServ,attr" bson:"ClaveProdServ" json:"ClaveProdServ"`
-	NoIdentificacion    *string                  `xml:"NoIdentificacion,attr" bson:"NoIdentificacion,omitempty" json:"NoIdentificacion,omitempty"`
-	Cantidad            float64                  `xml:"Cantidad,attr" bson:"Cantidad" json:"Cantidad"`
-	ClaveUnidad         string                   `xml:"ClaveUnidad,attr" bson:"ClaveUnidad" json:"ClaveUnidad"`
-	Unidad              *string                  `xml:"Unidad,attr" bson:"Unidad,omitempty" json:"Unidad,omitempty"`
-	Descripcion         string                   `xml:"Descripcion,attr" bson:"Descripcion" json:"Descripcion"`
-	ValorUnitario       float64                  `xml:"ValorUnitario,attr" bson:"ValorUnitario" json:"ValorUnitario"`
-	Importe             float64                  `xml:"Importe,attr" bson:"Importe" json:"Importe"`
-	Descuento           *float64                 `xml:"Descuento,attr" bson:"Descuento,omitempty" json:"Descuento,omitempty"`
-	ObjetoImp           string                   `xml:"ObjetoImp,attr" bson:"ObjetoImp" json:"ObjetoImp"`
-	Impuestos           *ImpuestosConcepto40     `xml:"Impuestos" bson:"Impuestos,omitempty" json:"Impuestos,omitempty"`
-	ACuentaTerceros     *ACuentaTerceros40       `xml:"ACuentaTerceros" bson:"ACuentaTerceros,omitempty" json:"ACuentaTerceros,omitempty"`
-	InformacionAduanera *[]InformacionAduanera40 `xml:"InformacionAduanera" bson:"InformacionAduanera,omitempty" json:"InformacionAduanera,omitempty"`
-	CuentaPredial       *[]CuentaPredial40       `xml:"CuentaPredial" bson:"CuentaPredial,omitempty" json:"CuentaPredial,omitempty"`
-	ComplementoConcepto *ComplementoConcepto     `xml:"ComplementoConcepto" bson:"ComplementoConcepto,omitempty" json:"ComplementoConcepto,omitempty"`
-	Parte               *[]Parte40               `xml:"Parte" bson:"Parte,omitempty" json:"Parte,omitempty"`
+	ClaveProdServ       string                           `xml:"ClaveProdServ,attr" bson:"ClaveProdServ" json:"ClaveProdServ"`
+	NoIdentificacion    *string                          `xml:"NoIdentificacion,attr" bson:"NoIdentificacion,omitempty" json:"NoIdentificacion,omitempty"`
+	Cantidad            float64                          `xml:"Cantidad,attr" bson:"Cantidad" json:"Cantidad"`
+	ClaveUnidad         string                           `xml:"ClaveUnidad,attr" bson:"ClaveUnidad" json:"ClaveUnidad"`
+	Unidad              *string                          `xml:"Unidad,attr" bson:"Unidad,omitempty" json:"Unidad,omitempty"`
+	Descripcion         string                           `xml:"Descripcion,attr" bson:"Descripcion" json:"Descripcion"`
+	ValorUnitario       float64                          `xml:"ValorUnitario,attr" bson:"ValorUnitario" json:"ValorUnitario"`
+	Importe             float64                          `xml:"Importe,attr" bson:"Importe" json:"Importe"`
+	Descuento           *float64                         `xml:"Descuento,attr" bson:"Descuento,omitempty" json:"Descuento,omitempty"`
+	ObjetoImp           string                           `xml:"ObjetoImp,attr" bson:"ObjetoImp" json:"ObjetoImp"`
+	Impuestos           *ImpuestosConcepto40             `xml:"Impuestos" bson:"Impuestos,omitempty" json:"Impuestos,omitempty"`
+	ACuentaTerceros     *ACuentaTerceros40               `xml:"ACuentaTerceros" bson:"ACuentaTerceros,omitempty" json:"ACuentaTerceros,omitempty"`
+	InformacionAduanera *[]InformacionAduanera40         `xml:"InformacionAduanera" bson:"InformacionAduanera,omitempty" json:"InformacionAduanera,omitempty"`
+	CuentaPredial       *[]CuentaPredial40               `xml:"CuentaPredial" bson:"CuentaPredial,omitempty" json:"CuentaPredial,omitempty"`
+	ComplementoConcepto *serializers.ComplementoConcepto `xml:"ComplementoConcepto" bson:"ComplementoConcepto,omitempty" json:"ComplementoConcepto,omitempty"`
+	Parte               *[]Parte40                       `xml:"Parte" bson:"Parte,omitempty" json:"Parte,omitempty"`
 }
 
 type ImpuestosConcepto40 struct {
