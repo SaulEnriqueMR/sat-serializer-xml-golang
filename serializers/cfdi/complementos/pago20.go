@@ -1,10 +1,10 @@
-package pago
+package complementos
 
 import (
 	"encoding/xml"
-	"strings"
 	"time"
 
+	"github.com/SaulEnriqueMR/sat-serializer-xml-golang/datatypes"
 	"github.com/SaulEnriqueMR/sat-serializer-xml-golang/helpers"
 )
 
@@ -66,7 +66,7 @@ func (p *Pago20) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 }
 
 type DoctoRelacionado20 struct {
-	IdDocumento      string         `xml:"IdDocumento,attr" bson:"IdDocumento" json:"IdDocumento"`
+	IdDocumento      datatypes.Uuid `xml:"IdDocumento,attr" bson:"IdDocumento" json:"IdDocumento"`
 	Serie            *string        `xml:"Serie,attr" bson:"Serie,omitempty" json:"Serie,omitempty"`
 	Folio            *string        `xml:"Folio,attr" bson:"Folio,omitempty" json:"Folio,omitempty"`
 	MonedaDR         string         `xml:"MonedaDR,attr" bson:"MonedaDR" json:"MonedaDR"`
@@ -77,18 +77,6 @@ type DoctoRelacionado20 struct {
 	ImpSaldoInsoluto float64        `xml:"ImpSaldoInsoluto,attr" bson:"ImpSaldoInsoluto" json:"ImpSaldoInsoluto"`
 	ObjetoImpDR      string         `xml:"ObjetoImpDR,attr" bson:"ObjetoImpDR" json:"ObjetoImpDR"`
 	ImpuestosDR      *ImpuestosDR20 `xml:"ImpuestosDR" bson:"ImpuestosDR,omitempty" json:"ImpuestosDR,omitempty"`
-}
-
-func (dr *DoctoRelacionado20) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
-	type tmp struct {
-		IdDocumento string `xml:"IdDocumento,attr"`
-	}
-	var aux tmp
-	if err := d.DecodeElement(&aux, &start); err != nil {
-		return err
-	}
-	dr.IdDocumento = strings.ToUpper(aux.IdDocumento)
-	return nil
 }
 
 type ImpuestosDR20 struct {

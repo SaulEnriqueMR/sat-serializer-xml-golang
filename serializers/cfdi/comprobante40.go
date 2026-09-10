@@ -2,17 +2,16 @@ package cfdi
 
 import (
 	"encoding/xml"
-	"strings"
-	"time"
 
-	"github.com/SaulEnriqueMR/sat-serializer-xml-golang/helpers"
+	"github.com/SaulEnriqueMR/sat-serializer-xml-golang/datatypes"
 )
 
 type Comprobante40 struct {
+	XMLName           xml.Name              `xml:"http://www.sat.gob.mx/cfd/4 Comprobante"`
 	Version           string                `xml:"Version,attr" bson:"Version" json:"Version"`
 	Serie             *string               `xml:"Serie,attr" bson:"Serie,omitempty" json:"Serie,omitempty"`
 	Folio             *string               `xml:"Folio,attr" bson:"Folio,omitempty" json:"Folio,omitempty"`
-	Fecha             time.Time             `xml:"Fecha,attr" bson:"Fecha" json:"Fecha"`
+	Fecha             datatypes.ISODateTime `xml:"Fecha,attr" bson:"Fecha" json:"Fecha"`
 	Sello             string                `xml:"Sello,attr" bson:"Sello" json:"Sello"`
 	FormaPago         *string               `xml:"FormaPago,attr" bson:"FormaPago,omitempty" json:"FormaPago,omitempty"`
 	NoCertificado     string                `xml:"NoCertificado,attr" bson:"NoCertificado" json:"NoCertificado"`
@@ -39,22 +38,6 @@ type Comprobante40 struct {
 	Addenda           *Addenda              `xml:"Addenda" bson:"Addenda,omitempty" json:"Addenda,omitempty"`
 }
 
-func (c *Comprobante40) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
-	type tmp struct {
-		Fecha string `xml:"Fecha,attr"`
-	}
-	var aux tmp
-	if err := d.DecodeElement(&aux, &start); err != nil {
-		return err
-	}
-	fecha, err := helpers.ParseDatetime(aux.Fecha)
-	if err != nil {
-		return err
-	}
-	c.Fecha = fecha
-	return nil
-}
-
 type InformacionGlobal40 struct {
 	Periodicidad string `xml:"Periodicidad,attr" bson:"Periodicidad" json:"Periodicidad"`
 	Meses        string `xml:"Meses,attr" bson:"Meses" json:"Meses"`
@@ -67,19 +50,7 @@ type CfdiRelacionados40 struct {
 }
 
 type CfdiRelacionado40 struct {
-	UUID string `xml:"UUID,attr" bson:"UUID" json:"UUID"`
-}
-
-func (cr *CfdiRelacionado40) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
-	type tmp struct {
-		UUID string `xml:"UUID,attr"`
-	}
-	var aux tmp
-	if err := d.DecodeElement(&aux, &start); err != nil {
-		return err
-	}
-	cr.UUID = strings.ToUpper(aux.UUID)
-	return nil
+	UUID datatypes.Uuid `xml:"UUID,attr" bson:"UUID" json:"UUID"`
 }
 
 type Emisor40 struct {
