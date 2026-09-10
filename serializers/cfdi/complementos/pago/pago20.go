@@ -8,7 +8,8 @@ import (
 	"github.com/SaulEnriqueMR/sat-serializer-xml-golang/helpers"
 )
 
-type Pagos struct {
+type Pagos20 struct {
+	XMLName xml.Name  `xml:"http://www.sat.gob.mx/Pagos20 Pagos"`
 	Version string    `xml:"Version,attr" bson:"Version" json:"Version"`
 	Totales Totales20 `xml:"Totales" bson:"Totales" json:"Totales"`
 	Pago    []Pago20  `xml:"Pago" bson:"Pago" json:"Pago"`
