@@ -1,4 +1,4 @@
-package complementos
+package pago
 
 import (
 	"encoding/xml"
