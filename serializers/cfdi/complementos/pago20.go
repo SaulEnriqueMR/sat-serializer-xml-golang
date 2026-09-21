@@ -2,10 +2,8 @@ package complementos
 
 import (
 	"encoding/xml"
-	"time"
 
 	"github.com/SaulEnriqueMR/sat-serializer-xml-golang/datatypes"
-	"github.com/SaulEnriqueMR/sat-serializer-xml-golang/helpers"
 )
 
 type Pagos20 struct {
@@ -30,39 +28,23 @@ type Totales20 struct {
 }
 
 type Pago20 struct {
-	FechaPago                      time.Time            `xml:"FechaPago,attr" bson:"FechaPago" json:"FechaPago"`
-	FormaDePagoP                   string               `xml:"FormaDePagoP,attr" bson:"FormaDePagoP" json:"FormaDePagoP"`
-	MonedaP                        string               `xml:"MonedaP,attr" bson:"MonedaP" json:"MonedaP"`
-	TipoCambioP                    *float64             `xml:"TipoCambioP,attr" bson:"TipoCambioP,omitempty" json:"TipoCambioP,omitempty"`
-	Monto                          float64              `xml:"Monto,attr" bson:"Monto" json:"Monto"`
-	NumOperacion                   *string              `xml:"NumOperacion,attr" bson:"NumOperacion,omitempty" json:"NumOperacion,omitempty"`
-	NomBancoOrdExt                 *string              `xml:"RfcEmisorCtaOrd,attr" bson:"RfcEmisorCtaOrd,omitempty" json:"RfcEmisorCtaOrd,omitempty"`
-	NombreBancoOrdenanteExtranjero *string              `xml:"NomBancoOrdExt,attr" bson:"NomBancoOrdExt,omitempty" json:"NomBancoOrdExt,omitempty"`
-	CtaOrdenante                   *string              `xml:"CtaOrdenante,attr" bson:"CtaOrdenante,omitempty" json:"CtaOrdenante,omitempty"`
-	RfcEmisorCtaBen                *string              `xml:"RfcEmisorCtaBen,attr" bson:"RfcEmisorCtaBen,omitempty" json:"RfcEmisorCtaBen,omitempty"`
-	CtaBeneficiario                *string              `xml:"CtaBeneficiario,attr" bson:"CtaBeneficiario,omitempty" json:"CtaBeneficiario,omitempty"`
-	TipoCadPago                    *string              `xml:"TipoCadPago,attr" bson:"TipoCadPago,omitempty" json:"TipoCadPago,omitempty"`
-	CertPago                       *string              `xml:"CertPago,attr" bson:"CertPago,omitempty" json:"CertPago,omitempty"`
-	CadPago                        *string              `xml:"CadPago,attr" bson:"CadPago,omitempty" json:"CadPago,omitempty"`
-	SelloPago                      *string              `xml:"SelloPago,attr" bson:"SelloPago,omitempty" json:"SelloPago,omitempty"`
-	DoctoRelacionado               []DoctoRelacionado20 `xml:"DoctoRelacionado" bson:"DoctoRelacionado" json:"DoctoRelacionado"`
-	ImpuestosP                     *ImpuestosDR20       `xml:"ImpuestosP" bson:"ImpuestosP,omitempty" json:"ImpuestosP,omitempty"`
-}
-
-func (p *Pago20) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
-	type tmp struct {
-		FechaPago string `xml:"FechaPago,attr"`
-	}
-	var aux tmp
-	if err := d.DecodeElement(&aux, &start); err != nil {
-		return err
-	}
-	fechaPago, err := helpers.ParseDatetime(aux.FechaPago)
-	if err != nil {
-		return err
-	}
-	p.FechaPago = fechaPago
-	return nil
+	FechaPago        datatypes.ISODateTime `xml:"FechaPago,attr" bson:"FechaPago" json:"FechaPago"`
+	FormaDePagoP     string                `xml:"FormaDePagoP,attr" bson:"FormaDePagoP" json:"FormaDePagoP"`
+	MonedaP          string                `xml:"MonedaP,attr" bson:"MonedaP" json:"MonedaP"`
+	TipoCambioP      *float64              `xml:"TipoCambioP,attr" bson:"TipoCambioP,omitempty" json:"TipoCambioP,omitempty"`
+	Monto            float64               `xml:"Monto,attr" bson:"Monto" json:"Monto"`
+	NumOperacion     *string               `xml:"NumOperacion,attr" bson:"NumOperacion,omitempty" json:"NumOperacion,omitempty"`
+	RfcEmisorCtaOrd  *string               `xml:"RfcEmisorCtaOrd,attr" bson:"RfcEmisorCtaOrd,omitempty" json:"RfcEmisorCtaOrd,omitempty"`
+	NomBancoOrdExt   *string               `xml:"NomBancoOrdExt,attr" bson:"NomBancoOrdExt,omitempty" json:"NomBancoOrdExt,omitempty"`
+	CtaOrdenante     *string               `xml:"CtaOrdenante,attr" bson:"CtaOrdenante,omitempty" json:"CtaOrdenante,omitempty"`
+	RfcEmisorCtaBen  *string               `xml:"RfcEmisorCtaBen,attr" bson:"RfcEmisorCtaBen,omitempty" json:"RfcEmisorCtaBen,omitempty"`
+	CtaBeneficiario  *string               `xml:"CtaBeneficiario,attr" bson:"CtaBeneficiario,omitempty" json:"CtaBeneficiario,omitempty"`
+	TipoCadPago      *string               `xml:"TipoCadPago,attr" bson:"TipoCadPago,omitempty" json:"TipoCadPago,omitempty"`
+	CertPago         *string               `xml:"CertPago,attr" bson:"CertPago,omitempty" json:"CertPago,omitempty"`
+	CadPago          *string               `xml:"CadPago,attr" bson:"CadPago,omitempty" json:"CadPago,omitempty"`
+	SelloPago        *string               `xml:"SelloPago,attr" bson:"SelloPago,omitempty" json:"SelloPago,omitempty"`
+	DoctoRelacionado []DoctoRelacionado20  `xml:"DoctoRelacionado" bson:"DoctoRelacionado" json:"DoctoRelacionado"`
+	ImpuestosP       *ImpuestosDR20        `xml:"ImpuestosP" bson:"ImpuestosP,omitempty" json:"ImpuestosP,omitempty"`
 }
 
 type DoctoRelacionado20 struct {
