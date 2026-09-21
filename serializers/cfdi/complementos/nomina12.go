@@ -1,25 +1,28 @@
 package complementos
 
 import (
+	"encoding/xml"
+
 	"github.com/SaulEnriqueMR/sat-serializer-xml-golang/datatypes"
 )
 
 type Nomina12 struct {
-	Version           string                 `xml:"Version,attr" bson:"Version" json:"Version"`
-	TipoNomina        string                 `xml:"TipoNomina,attr" bson:"TipoNomina" json:"TipoNomina"`
-	FechaPago         datatypes.ISODateTime  `xml:"FechaPago,attr" bson:"FechaPagoString" json:"FechaPagoString"`
-	FechaInicialPago  datatypes.ISODateTime  `xml:"FechaInicialPago,attr" bson:"FechaInicialPagoString" json:"FechaInicialPagoString"`
-	FechaFinalPago    datatypes.ISODateTime  `xml:"FechaFinalPago,attr" bson:"FechaFinalPagoString" json:"FechaFinalPagoString"`
-	NumDiasPagados    float64                `xml:"NumDiasPagados,attr" bson:"NumDiasPagados" json:"NumDiasPagados"`
-	TotalPercepciones *float64               `xml:"TotalPercepciones,attr" bson:"TotalPercepciones,omitempty" json:"TotalPercepciones,omitempty"`
-	TotalDeducciones  *float64               `xml:"TotalDeducciones,attr" bson:"TotalDeducciones,omitempty" json:"TotalDeducciones,omitempty"`
-	TotalOtrosPagos   *float64               `xml:"TotalOtrosPagos,attr" bson:"TotalOtrosPagos,omitempty" json:"TotalOtrosPagos,omitempty"`
-	Emisor            *Emisor12              `xml:"Emisor" bson:"Emisor,omitempty" json:"Emisor,omitempty"`
-	Receptor          Receptor12             `xml:"Receptor" bson:"Receptor" json:"Receptor"`
-	Percepciones      *Percepciones12        `xml:"Percepciones" bson:"Percepciones,omitempty" json:"Percepciones,omitempty"`
-	Deducciones       *Deducciones12         `xml:"Deducciones" bson:"Deducciones,omitempty" json:"Deducciones,omitempty"`
-	OtrosPagos        *[]OtroPagoNomina12    `xml:"OtrosPagos>OtroPago" bson:"OtrosPagos,omitempty" json:"OtrosPagos,omitempty"`
-	Incapacidades     *[]IncapacidadNomina12 `xml:"Incapacidades>Incapacidad" bson:"Incapacidades,omitempty" json:"Incapacidades,omitempty"`
+	XMLName           xml.Name              `xml:"http://www.sat.gob.mx/nomina12 Nomina"`
+	Version           string                `xml:"Version,attr" bson:"Version" json:"Version"`
+	TipoNomina        string                `xml:"TipoNomina,attr" bson:"TipoNomina" json:"TipoNomina"`
+	FechaPago         datatypes.ISODateTime `xml:"FechaPago,attr" bson:"FechaPagoString" json:"FechaPagoString"`
+	FechaInicialPago  datatypes.ISODateTime `xml:"FechaInicialPago,attr" bson:"FechaInicialPagoString" json:"FechaInicialPagoString"`
+	FechaFinalPago    datatypes.ISODateTime `xml:"FechaFinalPago,attr" bson:"FechaFinalPagoString" json:"FechaFinalPagoString"`
+	NumDiasPagados    float64               `xml:"NumDiasPagados,attr" bson:"NumDiasPagados" json:"NumDiasPagados"`
+	TotalPercepciones *float64              `xml:"TotalPercepciones,attr" bson:"TotalPercepciones,omitempty" json:"TotalPercepciones,omitempty"`
+	TotalDeducciones  *float64              `xml:"TotalDeducciones,attr" bson:"TotalDeducciones,omitempty" json:"TotalDeducciones,omitempty"`
+	TotalOtrosPagos   *float64              `xml:"TotalOtrosPagos,attr" bson:"TotalOtrosPagos,omitempty" json:"TotalOtrosPagos,omitempty"`
+	Emisor            *Emisor12             `xml:"Emisor" bson:"Emisor,omitempty" json:"Emisor,omitempty"`
+	Receptor          Receptor12            `xml:"Receptor" bson:"Receptor" json:"Receptor"`
+	Percepciones      *Percepciones12       `xml:"Percepciones" bson:"Percepciones,omitempty" json:"Percepciones,omitempty"`
+	Deducciones       *Deducciones12        `xml:"Deducciones" bson:"Deducciones,omitempty" json:"Deducciones,omitempty"`
+	OtrosPagos        *[]OtroPago12         `xml:"OtrosPagos>OtroPago" bson:"OtrosPagos,omitempty" json:"OtrosPagos,omitempty"`
+	Incapacidades     *[]Incapacidad12      `xml:"Incapacidades>Incapacidad" bson:"Incapacidades,omitempty" json:"Incapacidades,omitempty"`
 }
 
 type Emisor12 struct {
@@ -123,26 +126,26 @@ type Deduccion12 struct {
 	Importe       float64 `xml:"Importe,attr" bson:"Importe" json:"Importe"`
 }
 
-type OtroPagoNomina12 struct {
-	TipoOtroPago             string                            `xml:"TipoOtroPago,attr" bson:"TipoOtroPago" json:"TipoOtroPago"`
-	Clave                    string                            `xml:"Clave,attr" bson:"Clave" json:"Clave"`
-	Concepto                 string                            `xml:"Concepto,attr" bson:"Concepto" json:"Concepto"`
-	Importe                  float64                           `xml:"Importe,attr" bson:"Importe" json:"Importe"`
-	SubsidioAlEmpleo         *SubsidioAlEmpleoNomina12         `xml:"SubsidioAlEmpleo" bson:"SubsidioAlEmpleo,omitempty" json:"SubsidioAlEmpleo,omitempty"`
-	CompensacionSaldosAFavor *CompensacionSaldosAFavorNomina12 `xml:"CompensacionSaldosAFavor" bson:"CompensacionSaldosAFavor,omitempty" json:"CompensacionSaldosAFavor,omitempty"`
+type OtroPago12 struct {
+	TipoOtroPago             string                      `xml:"TipoOtroPago,attr" bson:"TipoOtroPago" json:"TipoOtroPago"`
+	Clave                    string                      `xml:"Clave,attr" bson:"Clave" json:"Clave"`
+	Concepto                 string                      `xml:"Concepto,attr" bson:"Concepto" json:"Concepto"`
+	Importe                  float64                     `xml:"Importe,attr" bson:"Importe" json:"Importe"`
+	SubsidioAlEmpleo         *SubsidioAlEmpleo12         `xml:"SubsidioAlEmpleo" bson:"SubsidioAlEmpleo,omitempty" json:"SubsidioAlEmpleo,omitempty"`
+	CompensacionSaldosAFavor *CompensacionSaldosAFavor12 `xml:"CompensacionSaldosAFavor" bson:"CompensacionSaldosAFavor,omitempty" json:"CompensacionSaldosAFavor,omitempty"`
 }
 
-type SubsidioAlEmpleoNomina12 struct {
+type SubsidioAlEmpleo12 struct {
 	SubsidioCausado float64 `xml:"SubsidioCausado,attr" bson:"SubsidioCausado" json:"SubsidioCausado"`
 }
 
-type CompensacionSaldosAFavorNomina12 struct {
+type CompensacionSaldosAFavor12 struct {
 	SaldoAFavor     float64 `xml:"SaldoAFavor,attr" bson:"SaldoAFavor" json:"SaldoAFavor"`
 	Año             string  `xml:"Año,attr" bson:"Año" json:"Año"`
 	RemanenteSalFav float64 `xml:"RemanenteSalFav,attr" bson:"RemanenteSalFav" json:"RemanenteSalFav"`
 }
 
-type IncapacidadNomina12 struct {
+type Incapacidad12 struct {
 	DiasIncapacidad  int      `xml:"DiasIncapacidad,attr" bson:"DiasIncapacidad" json:"DiasIncapacidad"`
 	TipoIncapacidad  string   `xml:"TipoIncapacidad,attr" bson:"TipoIncapacidad" json:"TipoIncapacidad"`
 	ImporteMonetario *float64 `xml:"ImporteMonetario,attr" bson:"ImporteMonetario,omitempty" json:"ImporteMonetario,omitempty"`
